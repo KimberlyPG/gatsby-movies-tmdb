@@ -18,7 +18,6 @@
     "-": "^0.0.1",
     "@apollo/client": "^3.7.0",
     "gatsby": "^4.24.3",
-    "gatsby-plugin-layout": "^3.24.0",
     "gatsby-source-graphql": "^4.24.0",
     "gatsby-source-tmdb": "^3.0.3",
     "graphql": "^15.8.0",
