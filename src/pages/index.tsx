@@ -3,7 +3,7 @@ import * as React from "react"
 import Home from "../components/Home"
 import Layout from "../components/Layout"
 
-import '../assets/global.css'
+import '../assets/global.css';
 
 const IndexPage = () => {
 

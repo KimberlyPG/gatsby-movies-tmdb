@@ -1,22 +1,19 @@
-import React from 'react'
+import React, { FC } from 'react';
 import Carousel from 'react-multi-carousel';
 
 import MovieAndTvCard from './MovieAndTv-card';
 
 import 'react-multi-carousel/lib/styles.css';
 import { responsive } from '../utils/carousel_responsive';
-import {PopularMoviesType} from "../types/graphql-types"
-import { PageProps } from 'gatsby';
+import { PopularMovies } from '../types/graphql-types';
 
-type GraphQLResultMovie ={
-  popularMovies: {
-    ok: boolean;
-    error: boolean;
-    movies:PopularMoviesType[]
-  }
+export type MoviesProps = {
+  ok?: boolean;
+  error?: boolean;
+  movies: PopularMovies[] | undefined;
 }
 
-const Movies:React.FC<GraphQLResultMovie> = ({ movies }: PopularMoviesType   ) => {
+const Movies: FC<MoviesProps> = ({ movies }) => {
   
   return (
     <Carousel responsive={responsive} centerMode={true} >

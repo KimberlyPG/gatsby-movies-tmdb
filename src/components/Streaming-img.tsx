@@ -1,4 +1,4 @@
-import React from 'react'
+import {FC} from 'react'
 
 type ItemImage = {
   item:{
@@ -7,7 +7,7 @@ type ItemImage = {
       }
 }
 
-const StreamingImg:React.FC<ItemImage> = ({ item }: ItemImage ) => {
+const StreamingImg: FC<ItemImage> = ({ item }: ItemImage ) => {
   return (
     <img 
         className="w-16 rounded-sm"

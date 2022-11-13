@@ -1,16 +1,16 @@
-import React from 'react'
+import React, {ReactNode, FC} from 'react'
+
 import Topbar from './Topbar'
-import { PageProps } from 'gatsby';
 
 interface Props{
-  children?: React.ReactNode
+  children: ReactNode
 }
 
-const Layout: React.FC<Props> = props => {
+const Layout: FC<Props> = ({ children }) => {
 return (
     <div>
         <Topbar />
-        {props.children}
+        {children}
     </div>
   )
 }

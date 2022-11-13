@@ -1,28 +1,20 @@
-import * as React from "react"
-import { useState } from "react";
+import React, { FC, useState } from 'react';
 import {  graphql, useStaticQuery } from "gatsby";
-import { useQuery, gql } from "@apollo/client";
-import {PopularMoviesType} from "../types/graphql-types"
-import {PopularShowsType} from "../types/graphql-types"
 
 import Navbar from "./Navbar";
 import Movies from "./Movies";
 import TvShows from "./TvShows";
 
-type GraphQLResultMovie ={
-  popularMovies: {
-    ok: boolean;
-    error: boolean;
-    movies:PopularMoviesType[]
-  }
-}
+import { useQuery, gql } from "@apollo/client";
+import { PopularMovies } from '../types/graphql-types';
 
-type GraphQLResultShow ={
-  popularShows: {
-    ok: boolean;
-    error: boolean;
-    shows:{ PopularShowsType }[]
-  }
+
+type PopularMoviesData = {
+  movies: PopularMovies[];
+} 
+
+type MoviesQueryProps = {
+  popularMovies: PopularMoviesData;
 }
 
 const POPULAR_MOVIES = gql`
@@ -69,10 +61,10 @@ query{
 }  
 `
 
-const Home = () => {
-    const [moviesView, setMoviesView] = useState(true);
+const Home: FC = () => {
+    const [moviesView, setMoviesView] = useState<boolean>(true);
 
-    const { loading: popularMoviesLoading, error: popularMoviesError, data: popularMoviesData } = useQuery(POPULAR_MOVIES);
+    const { loading: popularMoviesLoading, error: popularMoviesError, data: popularMoviesData } = useQuery<MoviesQueryProps>(POPULAR_MOVIES);
     const { loading: popularShowsLoading, error: popularShowsError, data: popularShowsData } = useQuery(POPULAR_SHOWS);
    
     const queryMoviesAndTv =  useStaticQuery(graphql`
@@ -119,9 +111,9 @@ const Home = () => {
           (
           <>
             <h2 className="text-lg font-bold px-3">Top rated movies</h2>
-            <Movies movie={queryMoviesAndTv.movies.nodes} name={queryMoviesAndTv.movies.nodes.name} />
+            <Movies movies={queryMoviesAndTv.movies.nodes} />
             <h2 className="text-lg font-bold px-3">Popular movies</h2>
-            <Movies movie={popularMoviesData.popularMovies.movies} name={popularMoviesData.popularMovies.movies.original_title} />
+            <Movies movies={popularMoviesData?.popularMovies.movies} />
           </>
           ):(
           <>

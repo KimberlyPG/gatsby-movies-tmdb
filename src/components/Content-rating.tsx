@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Ratings from 'react-ratings-declarative';
-import {PopularMoviesType} from '../types/graphql-types'
+import {PopularMovies} from '../types/graphql-types'
 
+type ContentRatingProps = {
+  data: PopularMovies;
+}
 
-
-
-const ContentRating:React.FC<PopularMoviesType> = ({ data}: PopularMoviesType) => {
+const ContentRating: FC<ContentRatingProps> = ({ data }) => {
   return (
     <div className="flex space-x-2 mt-5 text-white">
         <Ratings
@@ -13,7 +14,7 @@ const ContentRating:React.FC<PopularMoviesType> = ({ data}: PopularMoviesType) =
             widgetDimensions="19px"
             widgetSpacings="5px"
         >
-            {Array.from({ length: 10 }, (_:unknown, i) => 
+            {Array.from({ length: 10 }, (_, i) => 
                 <Ratings.Widget widgetRatedColor="yellow" />
             )}
         </Ratings>
