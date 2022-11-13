@@ -2,10 +2,28 @@ import * as React from "react"
 import { useState } from "react";
 import {  graphql, useStaticQuery } from "gatsby";
 import { useQuery, gql } from "@apollo/client";
+import {PopularMoviesType} from "../types/graphql-types"
+import {PopularShowsType} from "../types/graphql-types"
 
 import Navbar from "./Navbar";
 import Movies from "./Movies";
 import TvShows from "./TvShows";
+
+type GraphQLResultMovie ={
+  popularMovies: {
+    ok: boolean;
+    error: boolean;
+    movies:PopularMoviesType[]
+  }
+}
+
+type GraphQLResultShow ={
+  popularShows: {
+    ok: boolean;
+    error: boolean;
+    shows:{ PopularShowsType }[]
+  }
+}
 
 const POPULAR_MOVIES = gql`
 query{

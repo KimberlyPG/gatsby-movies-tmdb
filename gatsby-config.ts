@@ -2,7 +2,9 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 module.exports = {
-  siteMetadata: {}, 
+  siteMetadata: {
+    title: `TMDB Gatsby project`,
+  }, 
   plugins: [
     'gatsby-plugin-postcss',
     {
@@ -19,4 +21,5 @@ module.exports = {
     //   },
     // },
   ],
+  graphqlTypegen: true,
 }

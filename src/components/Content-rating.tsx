@@ -1,7 +1,11 @@
 import React from 'react'
 import Ratings from 'react-ratings-declarative';
+import {PopularMoviesType} from '../types/graphql-types'
 
-const ContentRating = ({ data}) => {
+
+
+
+const ContentRating:React.FC<PopularMoviesType> = ({ data}: PopularMoviesType) => {
   return (
     <div className="flex space-x-2 mt-5 text-white">
         <Ratings
@@ -9,7 +13,7 @@ const ContentRating = ({ data}) => {
             widgetDimensions="19px"
             widgetSpacings="5px"
         >
-            {Array.from({ length: 10 }, (_, i) => 
+            {Array.from({ length: 10 }, (_:unknown, i) => 
                 <Ratings.Widget widgetRatedColor="yellow" />
             )}
         </Ratings>
