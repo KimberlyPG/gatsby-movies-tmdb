@@ -5,30 +5,15 @@ import ShowCard from "../../components/Show-card";
 import Navbar from "../../components/Navbar";
 import Layout from "../../components/Layout";
 
-import { TvResult } from "../../types/graphql-types";
-import { MovieResult } from "../../types/graphql-types";
-
 import { searchContent } from "../../api/search";
 
-type SearchProps = {
-    params:string;
-}
-
-export type SearchResultProps = {
-    page:number;
-    results: MovieResult[] | TvResult[];
-    total_results:number;
-    total_pages:number;
-}
-
-
-const Search:React.FC<SearchProps>= ({ params }) => {
-    const param = params[`*` as keyof typeof params]
+const Search = ({ params }) => {
+    const param = params[`*`]
     const [moviesView, setMoviesView] = useState(true);
-    const [moviesData, setmoviesData] = useState<SearchResultProps | null>(null);
-    const [tvData, setTvData] = useState<SearchResultProps | null>(null);
-    const [status, setStatus] = useState<string | boolean>('');
-    const [content, setContent] = useState<SearchResultProps | null>(null);
+    const [moviesData, setmoviesData] = useState(null);
+    const [tvData, setTvData] = useState(null);
+    const [status, setStatus] = useState('');
+    const [content, setContent] = useState('');
 
     useEffect(() => {
         moviesView === true ? setContent(moviesData) : setContent(tvData) 
