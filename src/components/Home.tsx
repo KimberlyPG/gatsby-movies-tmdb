@@ -6,7 +6,7 @@ import Movies from "./Movies";
 import TvShows from "./TvShows";
 
 import { useQuery, gql } from "@apollo/client";
-import { PopularMovies } from '../types/graphql-types';
+import { PopularMovies, PopularShows } from '../types/graphql-types';
 
 
 type PopularMoviesData = {
@@ -15,6 +15,14 @@ type PopularMoviesData = {
 
 type MoviesQueryProps = {
   popularMovies: PopularMoviesData;
+}
+
+type PopularShowsData = {
+  shows: PopularShows[];
+} 
+
+type ShowsQueryProps = {
+  popularShows: PopularShowsData;
 }
 
 const POPULAR_MOVIES = gql`
@@ -65,7 +73,7 @@ const Home: FC = () => {
     const [moviesView, setMoviesView] = useState<boolean>(true);
 
     const { loading: popularMoviesLoading, error: popularMoviesError, data: popularMoviesData } = useQuery<MoviesQueryProps>(POPULAR_MOVIES);
-    const { loading: popularShowsLoading, error: popularShowsError, data: popularShowsData } = useQuery(POPULAR_SHOWS);
+    const { loading: popularShowsLoading, error: popularShowsError, data: popularShowsData } = useQuery<ShowsQueryProps>(POPULAR_SHOWS);
    
     const queryMoviesAndTv =  useStaticQuery(graphql`
     query MyQuery {
@@ -120,7 +128,7 @@ const Home: FC = () => {
             <h2 className="text-lg font-bold px-3">Top rated tv shows</h2>
             <TvShows tv={queryMoviesAndTv.tv.nodes} />
             <h2 className="text-lg font-bold px-3">Popular shows</h2>
-            <TvShows tv={popularShowsData.popularShows.shows} />
+            <TvShows tv={popularShowsData?.popularShows.shows} />
           </>
           )
           }

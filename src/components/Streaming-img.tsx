@@ -1,10 +1,10 @@
-import {FC} from 'react'
+import React, {FC} from 'react'
 
 type ItemImage = {
   item:{
     logo_path:string;
     provider_name:string;
-      }
+    }
 }
 
 const StreamingImg: FC<ItemImage> = ({ item }: ItemImage ) => {

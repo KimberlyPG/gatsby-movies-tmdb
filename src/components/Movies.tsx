@@ -7,7 +7,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { responsive } from '../utils/carousel_responsive';
 import { PopularMovies } from '../types/graphql-types';
 
-export type MoviesProps = {
+type MoviesProps = {
   ok?: boolean;
   error?: boolean;
   movies: PopularMovies[] | undefined;

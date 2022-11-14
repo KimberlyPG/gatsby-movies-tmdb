@@ -1,7 +1,14 @@
 import * as React from "react"
 import { navigate } from "gatsby";
+import { PopularMovies } from '../types/graphql-types';
 
-const MovieAndTvCard = ({ data, name, type }) => {
+type MovieandTVProps ={
+    data: PopularMovies;
+    name: string;
+    type: string;
+}
+
+const MovieAndTvCard: React.FC<MovieandTVProps> = ({ data, name, type }) => {
 
     return (
         <div className="relative hover:opacity-70 h-full cursor-pointer" onClick={() => navigate(`/details/${name}`, {state: {contentId: data.id, type: type }})}>
