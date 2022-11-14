@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {FC} from "react";
 import { useState, useEffect } from "react";
 
 import ShowCard from "../../components/Show-card";
@@ -6,9 +6,14 @@ import Navbar from "../../components/Navbar";
 import Layout from "../../components/Layout";
 
 import { searchContent } from "../../api/search";
+import { SearchMovies, SearchTv } from "../../types/graphql-types";
 
-const Search = ({ params }) => {
-    const param = params[`*`]
+type SearchProps = {
+    params: string;
+}
+
+const Search: FC<SearchProps> = ({ params }) => {
+    const param = params[`*` as keyof typeof params]
     const [moviesView, setMoviesView] = useState(true);
     const [moviesData, setmoviesData] = useState(null);
     const [tvData, setTvData] = useState(null);
