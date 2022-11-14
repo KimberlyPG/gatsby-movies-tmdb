@@ -96,7 +96,7 @@ const Details = ({ location }) => {
                     <div>
                         <img 
                             className="rounded-xl w-80"
-                            src={`https://image.tmdb.org/t/p/w1280/${data?.poster_path}`} 
+                            src={data?.poster_path === null ? `https://via.placeholder.com/300x460.png/AAF0C1/000000?text=No+Image+Available` :`https://image.tmdb.org/t/p/w1280/${data?.poster_path}`} 
                         />
                         {state.type === 'movie' ? (
                             <span className="flex text-white space-x-5 font-semibold text-lg ml-3">

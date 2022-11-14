@@ -1,13 +1,17 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { useState } from "react";
 
-const Navbar = ({ setMoviesView }) => {
+type NavbarProps = {
+  setMoviesView:React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Navbar:FC<NavbarProps> = ({ setMoviesView}) => {
     const [moviesButtonBg, setMoviesButtonBg] = useState('#1B5BA9');
     const [showsButtonBg, setShowsButtonBg] = useState('transparent');
     const [moviesButtonColor, setMoviesButtonColor] = useState('#FFFFFF');
     const [showsButtonColor, setShowsButtonColor] = useState('#C2C8CD');
 
-    const toggle = (value) => {
+    const toggle = (value:boolean) => {
         setMoviesView(value);
         if(value) {
           setMoviesButtonBg('#1B5BA9');
