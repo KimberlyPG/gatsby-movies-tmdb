@@ -30,35 +30,24 @@ export type PopularShows = {
   vote_count: number;
 }
 
-export type SearchMovies = {
-  poster_path: string | null;
-  adult: boolean;
-  overview: string;
-  release_date: string;
+export type SearchShows = {
+  adult: boolean | undefined;
+  backdrop_path: string | null;
   genre_ids: number[];
   id: number;
-  original_title: string;
   original_language: string;
-  title: string;
-  backdrop_path: string | null;
+  original_title: string | undefined;
+  original_name: string | undefined;
+  overview: string;
   popularity: number;
-  vote_count: number;
+  poster_path: string | null;
+  release_date: string;
+  first_air_date: string;
+  title: string | undefined;
+  name: string | undefined;
+  origin_country: string[];
   video: boolean;
   vote_average: number;
+  vote_count: number;
 }
 
-export type SearchTv = {
-  poster_path: string | null;
-  popularity: number;
-  id: number;
-  backdrop_path: string | null;
-  vote_average: number;
-  overview: string;
-  first_air_date: string;
-  origin_country: string[];
-  genre_ids: number[];
-  original_language: string;
-  vote_count: number;
-  name: string;
-  original_name: string;
-}

@@ -6,7 +6,7 @@ import Navbar from "../../components/Navbar";
 import Layout from "../../components/Layout";
 
 import { searchContent } from "../../api/search";
-import { SearchMovies, SearchTv } from "../../types/graphql-types";
+import { SearchShows } from "../../types/graphql-types";
 
 type SearchProps = {
     params: string;
@@ -14,22 +14,25 @@ type SearchProps = {
 
 const Search: FC<SearchProps> = ({ params }) => {
     const param = params[`*` as keyof typeof params]
-    const [moviesView, setMoviesView] = useState(true);
-    const [moviesData, setmoviesData] = useState(null);
-    const [tvData, setTvData] = useState(null);
-    const [status, setStatus] = useState('');
-    const [content, setContent] = useState('');
+    const [moviesView, setMoviesView] = useState<boolean>(true);
+    const [moviesData, setmoviesData] = useState<SearchShows[]>([]);
+    const [tvData, setTvData] = useState<SearchShows[]>([]);
+    const [status, setStatus] = useState<string | number | boolean>('');
+    const [content, setContent] = useState<SearchShows[]>([]);
+
+    console.log("tv", tvData)
 
     useEffect(() => {
         moviesView === true ? setContent(moviesData) : setContent(tvData) 
-    }, [moviesData, tvData, moviesView])
-    console.log("list", content);
+    }, [moviesData, tvData, moviesView]);
+
+    console.log("status", status)
     useEffect(() => {
         setStatus('Loading');
 
         searchContent(param, 'movie', setmoviesData, setStatus);   
         searchContent(param, 'tv', setTvData, setStatus);   
-    }, [param])
+    }, [param]);
 
   return (
     <Layout>
@@ -41,7 +44,7 @@ const Search: FC<SearchProps> = ({ params }) => {
                     </div>
                     <h2 className="pt-2 flex text-2xl font-bold text-gray-600">Search result for {`${param}`}</h2>
                     <div className="grid grid-cols-5 p-10 w-4/5">
-                        {content && content?.results?.map((item) => (
+                        {content && content.map((item) => (
                             <ShowCard key={item.id} item={item} type={moviesView ? 'movie': 'tv'}/>
                         ))}
                     </div>

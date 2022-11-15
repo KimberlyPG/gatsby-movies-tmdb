@@ -1,10 +1,17 @@
-import React from 'react'
+import React, {FC} from 'react'
 import { navigate } from 'gatsby';
 
 import { AiFillStar } from "react-icons/ai";
+import { SearchShows } from '../types/graphql-types'
 
-const ShowCard = ({ item, type }) => {
-  if(item.poster_path === null) return 
+type ShowCardProps = {
+  item: SearchShows;
+  type: string;
+}
+
+const ShowCard: FC<ShowCardProps> = ({ item, type }) => {
+
+  if(item.poster_path === null) return null 
   return (
     <div className='p-5' onClick={() => navigate(`/details/${item.title}`, {state: {contentId: item.id, type: type }})}>
         <div className='relative cursor-pointer'>
