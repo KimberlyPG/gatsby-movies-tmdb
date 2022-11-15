@@ -6,6 +6,7 @@ type MovieandTVProps ={
     data: PopularMovies;
     name: string;
     type: string;
+    posterType: string;
 }
 
 const MovieAndTvCard: React.FC<MovieandTVProps> = ({ data, name, type }) => {
