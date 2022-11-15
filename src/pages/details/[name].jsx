@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import Layout from "../../components/Layout";
-import StreamingServices from "../../components/Streaming-services";
+import StreamingServices from "../../components/StreamingServices";
 import ContentRating from "../../components/Content-rating";
 import ShowCard from "../../components/Show-card";
 
@@ -11,15 +11,13 @@ import 'react-dropdown/style.css';
 
 const Details = ({ location }) => {
     const { state = {} } = location
-    // const countryName = localStorage.getItem('country');
-    const [countryName, setCountryName] = useState(null);
     const [data, setData] = useState(null);
     const [providers, setProviders] = useState([]);
     const [options, setOptions] = useState([]);
     const [showMethod, setShowMethod] = useState('flatrate')
-    const [countrySelected, setCountrySelected] = useState({value: JSON.parse(countryName)});
+    const [countrySelected, setCountrySelected] = useState('');
     const [similar, setSimilar] = useState([]);
-    console.log("selected", countrySelected)
+
     useEffect(() => {
         const ContentData = async() => {
             await fetch(`https://api.themoviedb.org/3/${state.type}/${state.contentId}?api_key=${process.env.GATSBY_API_KEY}&language=en-US`) 
@@ -61,12 +59,20 @@ const Details = ({ location }) => {
         }
     }, [options])
     
-    const verifyCountry = () => {
+    const getSavedContry = () => localStorage.getItem('country');
+
+    const regionNames = new Intl.DisplayNames(
+        ['en'], {type: 'region'}
+    );
+
+    const verifyCountry = () => {       
         if (localStorage.getItem('country') === null) {
             localStorage.setItem('country', JSON.stringify('US'));    
-            setCountryName(localStorage.getItem('country'));
+            setCountrySelected({ value: JSON.parse(getSavedContry()) });
         } 
-        else setCountryName(localStorage.getItem('country'));
+        else {
+            setCountrySelected({ value: JSON.parse(getSavedContry()) });
+        } 
     }
 
     const handleChange = (option) => {
@@ -78,11 +84,6 @@ const Details = ({ location }) => {
 
         localStorage.setItem('country', JSON.stringify(value));
     }
-
-    const regionNames = new Intl.DisplayNames(
-        ['en'], {type: 'region'}
-      );
-
 
     return (
         <Layout>

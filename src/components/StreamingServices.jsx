@@ -1,8 +1,7 @@
 import React from 'react'
-import { useState } from 'react';
 import Dropdown from 'react-dropdown';
 
-import StreamingImg from './Streaming-img';
+import StreamingImg from './StreamingImg';
 
 const StreamingServices = ({ setShowMethod, handleChange, countrySelected, showMethod, providers, options }) => {
 

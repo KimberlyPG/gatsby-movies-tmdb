@@ -44,7 +44,7 @@ const Search: FC<SearchProps> = ({ params }) => {
                     </div>
                     <h2 className="pt-2 flex text-2xl font-bold text-gray-600">Search result for {`${param}`}</h2>
                     <div className="grid grid-cols-5 p-10 w-4/5">
-                        {content && content.map((item) => (
+                        {content && content?.map((item) => (
                             <ShowCard key={item.id} item={item} type={moviesView ? 'movie': 'tv'}/>
                         ))}
                     </div>
