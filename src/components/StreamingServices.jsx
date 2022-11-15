@@ -1,7 +1,7 @@
 import React from 'react'
 import Dropdown from 'react-dropdown';
 
-import StreamingImg from './StreamingImg';
+import StreamingImg from './Streaming-img';
 
 const StreamingServices = ({ setShowMethod, handleChange, countrySelected, showMethod, providers, options }) => {
 
@@ -31,7 +31,7 @@ const StreamingServices = ({ setShowMethod, handleChange, countrySelected, showM
                     <StreamingImg item={item}/>  
                 ))
             }
-            {showMethod == 'rent' &&
+            {showMethod === 'rent' &&
                 Object.values(providers)[countrySelected.idx]?.rent?.map((item) => (
                     <StreamingImg item={item}/>  
                 ))

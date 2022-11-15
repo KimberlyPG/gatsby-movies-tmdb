@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel';
 import MovieAndTvCard from './MovieAndTv-card';
 
 import 'react-multi-carousel/lib/styles.css';
-import { responsive_normal, responsive_large } from '../utils/carousel_responsive';
+import { responsive_normal } from '../utils/carousel_responsive';
 
 const TvShows = ({ tv, type }) => {
   

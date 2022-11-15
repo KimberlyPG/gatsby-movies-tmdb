@@ -11,7 +11,7 @@ type MoviesProps = {
   ok?: boolean;
   error?: boolean;
   movie: PopularMovies[] | undefined;
-  type:string
+  type: string
 }
 
 const Movies: FC<MoviesProps> = ({ movie, type }) => {
